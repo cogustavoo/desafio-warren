@@ -1,51 +1,52 @@
 package challengeTwo
 
+import menuScreen.readLineInt
+
 class ResolutionCodeTwo {
-    private var lateStudentsLimit = 0
-    private var lateStudents = 0
+    private var onTimeStudentsValue = 0
+    private var onTimeStudents = 0
     private var continueAdd: Boolean = true
     private var studentsTimeCheck: MutableList<Int> = mutableListOf()
-
-    public fun run() {
+    /*
+    funcao para executar o codigo atravez do menu principal
+     e definir a aula como normal ou cancelada, atravez dos dados coletados
+     */
+    fun run() {
         readUserData()
-        println("Tempo chegada alunos $studentsTimeCheck \n" +
-                "Quantidade de alunos atrasados: $lateStudents\n" +
-                "Limite de alunos atrasados: $lateStudentsLimit")
-        if (lateStudents < lateStudentsLimit) println("Aula normal.") else println("Aula cancelada.")
+        println(
+            "Tempo chegada alunos $studentsTimeCheck \n" +
+            "Quantidade de alunos presentes: $onTimeStudents\n" +
+            "Quantidade minima de alunos presentes: $onTimeStudentsValue \n"
+        )
+        if (onTimeStudents >= onTimeStudentsValue) println("Aula normal.")
+            else println("Aula cancelada.\n")
+        studentsTimeCheck.clear()
     }
 
-    private fun readUserData(){
+    private fun readUserData() {
         println("digite a quantidade limite de atrasos: ")
         var input = readLineInt()
-        lateStudentsLimit = input
+        onTimeStudentsValue = input
         while (continueAdd) {
             println("Digite o tempo de chegada do aluno: ")
             input = readLineInt()
             studentsTimeCheck.add(input)
             println(
                 """Deseja adicionar um novo aluno?"
-            1. Sim
-            2. Nao
-            """.trimIndent()
+                1. Sim
+                2. Nao
+                """.trimIndent()
             )
             input = readLineInt()
-            if (input == 2){
+            if (input == 2) {
                 continueAdd = false
             } else continue
         }
-        for (late in studentsTimeCheck) {
-            if (late > 0) {
-                lateStudents++
+        //checagem de quantos alunos estao presentes
+        for (present in studentsTimeCheck) {
+            if (present <= 0) {
+                onTimeStudents++
             }
         }
-    }
-
-    private fun readLineInt(): Int {
-        var input = readln()
-        while (!input.removePrefix("-").all { it in '0'..'9' } || input.isEmpty() ) {
-            println("Por favor digite uma opcao valida(apenas numeros)")
-            input = readln()
-        }
-        return input.toInt()
     }
 }

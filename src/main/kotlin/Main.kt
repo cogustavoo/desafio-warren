@@ -5,7 +5,6 @@ import challengeTwo.ResolutionCodeTwo
 import menuScreen.Menu
 import kotlin.system.exitProcess
 
-
 fun main(args: Array<String>) {
     val challengeOne = ResolutionCodeOne()
     val challengeTwo = ResolutionCodeTwo()
@@ -25,6 +24,7 @@ fun main(args: Array<String>) {
     println("Applicacao finalizada")
     exitProcess(0)
 }
+
 
 
 
