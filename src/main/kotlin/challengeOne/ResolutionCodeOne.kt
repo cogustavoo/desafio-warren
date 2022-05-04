@@ -2,11 +2,12 @@ package challengeOne
 
 class ResolutionCodeOne {
 
-    public fun print() = println("${oddNumBellowOneMill()} \n")
+    public fun run() = println("${oddNumBellowOneMill()} \n")
 
     private fun oddNumBellowOneMill(): MutableList<Int> {
         var number= 0
         val numbersStorage = mutableListOf<Int>()
+        val tests = mutableListOf<Array<Int>>()
         var counter = 0
         val limiter = 1000000
 

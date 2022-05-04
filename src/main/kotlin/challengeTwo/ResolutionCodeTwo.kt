@@ -1,20 +1,26 @@
 package challengeTwo
 
 class ResolutionCodeTwo {
+    private var lateStudentsLimit = 0
+    private var lateStudents = 0
+    private var continueAdd: Boolean = true
+    private var studentsTimeCheck: MutableList<Int> = mutableListOf()
 
-    public fun print() = println("${readUserData()} \n")
+    public fun run() {
+        readUserData()
+        println("Tempo chegada alunos $studentsTimeCheck \n" +
+                "Quantidade de alunos atrasados: $lateStudents\n" +
+                "Limite de alunos atrasados: $lateStudentsLimit")
+        if (lateStudents < lateStudentsLimit) println("Aula normal.") else println("Aula cancelada.")
+    }
 
     private fun readUserData(){
-        var lateStudents = 0
-        val classContinues = false
-        var continueAdd: Boolean = true
-        var studentsTimeCheck: MutableList<Int> = mutableListOf()
-
         println("digite a quantidade limite de atrasos: ")
-        val lateStudentsLimit = readLineInt()
+        var input = readLineInt()
+        lateStudentsLimit = input
         while (continueAdd) {
             println("Digite o tempo de chegada do aluno: ")
-            var input = readLineInt()
+            input = readLineInt()
             studentsTimeCheck.add(input)
             println(
                 """Deseja adicionar um novo aluno?"
@@ -32,13 +38,6 @@ class ResolutionCodeTwo {
                 lateStudents++
             }
         }
-        val classResult = println("Tempo chegada alunos $studentsTimeCheck \n" +
-                "Quantidade de alunos atrasados: $lateStudents\n" +
-                "Limite de alunos atrasados: $lateStudentsLimit"
-        )
-        if (lateStudents < lateStudentsLimit) println("Aula normal.") else println("Aula cancelada.")
-
-        return classResult
     }
 
     private fun readLineInt(): Int {
