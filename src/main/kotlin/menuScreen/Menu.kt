@@ -1,14 +1,5 @@
 package menuScreen
 
-// funcao global para ler as entradas do usuario e checar se e um inteiro
-fun readLineInt(): Int {
-    var input = readln()
-    while (!input.removePrefix("-").all { it in '0'..'9' } || input.isEmpty() ) {
-        println("Por favor digite uma opcao valida(apenas numeros)")
-        input = readln()
-    }
-    return input.toInt()
-}
 
 class Menu {
 
